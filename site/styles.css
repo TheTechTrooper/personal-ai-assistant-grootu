@@ -98,12 +98,18 @@ body {
   gap: 10px;
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #7df4ff;
-  box-shadow: 0 0 10px #7df4ff;
+.brand-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  display: inline-grid;
+  place-items: center;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #eaffff;
+  background: linear-gradient(145deg, #18d9ff, #5f6bff);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 16px rgba(24, 217, 255, 0.45);
 }
 
 nav {
