@@ -17,39 +17,51 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <canvas id="starfield" aria-hidden="true"></canvas>
-    <div class="bg-orb orb-a"></div>
-    <div class="bg-orb orb-b"></div>
-    <div class="grid-overlay"></div>
-    <div class="scanline"></div>
+    <div class="hero-bg-shape shape-a"></div>
+    <div class="hero-bg-shape shape-b"></div>
+    <div class="hero-bg-ring ring-a"></div>
+    <div class="hero-bg-ring ring-b"></div>
 
     <header class="topbar">
-      <a class="brand" href="#home"><span class="dot"></span>Sainath.dev</a>
+      <a class="brand" href="#home"><span class="dot"></span>AI.Tech</a>
       <nav>
-        <a href="#projects">Projects</a>
+        <a href="#home">Home</a>
+        <a href="#stack">About</a>
+        <a href="#projects">Services</a>
         <a href="#stack">Stack</a>
-        <a href="#timeline">Timeline</a>
+        <a href="#timeline">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
-      <div class="badge">SYSTEM ONLINE</div>
+      <div class="badge">ONLINE</div>
     </header>
 
     <main id="home">
       <section class="hero reveal">
-        <p class="kicker">Personal Work Hub</p>
-        <h1>Building practical AI assistants and real-world tooling.</h1>
-        <p class="hero-copy">
-          This page tracks what I build, what I am focused on now, and how I
-          ship products from prototype to production.
-        </p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#projects">View Work</a>
-          <a class="btn ghost" href="#contact">Work With Me</a>
+        <div class="hero-copy-col">
+          <p class="kicker">Next-Gen AI</p>
+          <h1>Artificial Intelligence For Your Business</h1>
+          <p class="hero-copy">
+            I build practical AI assistants, automation workflows, and local-first systems
+            that help teams ship faster and work smarter.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">Read More</a>
+            <a class="btn ghost" href="#contact">Contact Us</a>
+          </div>
+          <div class="telemetry">
+            <span>VOICE AGENT</span>
+            <span>AUTOMATION</span>
+            <span>LOCAL LLM</span>
+          </div>
         </div>
-        <div class="telemetry">
-          <span>MODE: EXECUTION</span>
-          <span>MODEL: LOCAL + OFFLINE</span>
-          <span>STATE: SHIPPING</span>
+        <div class="hero-visual">
+          <div class="avatar-shell">
+            <div class="avatar-glow"></div>
+            <div class="avatar-core"></div>
+            <div class="avatar-eye left"></div>
+            <div class="avatar-eye right"></div>
+          </div>
+          <div class="hero-dots"></div>
         </div>
         <div class="hero-stats">
           <article>
@@ -109,10 +121,6 @@
         </div>
       </section>
     </main>
-
-    <section class="marquee" aria-label="status feed">
-      <div class="marquee-track" id="marquee-track"></div>
-    </section>
 
     <footer>
       <p>
