@@ -1,12 +1,10 @@
 :root {
-  --bg: #10161d;
-  --bg-deep: #151e29;
+  --bg: #0f151d;
   --surface: #171f2a;
   --surface-soft: #1d2734;
   --text: #e4edf8;
-  --text-on-hero: #eef5ff;
-  --muted-on-hero: #adbed1;
-  --line: rgba(175, 199, 226, 0.22);
+  --muted: #afc0d5;
+  --line: rgba(172, 197, 225, 0.2);
   --primary: #63c8ff;
   --primary-2: #7d86ff;
 }
@@ -24,74 +22,31 @@ body {
 body {
   font-family: "Space Grotesk", sans-serif;
   color: var(--text);
-  background: #11161d;
-  overflow-x: hidden;
-}
-
-.hero-bg-shape,
-.hero-bg-ring {
-  position: absolute;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.shape-a {
-  width: 420px;
-  height: 420px;
-  top: -140px;
-  right: -100px;
-  background: radial-gradient(circle, rgba(92, 122, 169, 0.28), rgba(92, 122, 169, 0));
-}
-
-.shape-b {
-  width: 320px;
-  height: 320px;
-  left: -120px;
-  top: 120px;
-  background: radial-gradient(circle, rgba(73, 104, 148, 0.26), rgba(73, 104, 148, 0));
-}
-
-.ring-a,
-.ring-b {
-  border: 10px solid rgba(132, 165, 207, 0.14);
-  border-radius: 999px;
-}
-
-.ring-a {
-  width: 260px;
-  height: 260px;
-  right: 80px;
-  top: 34px;
-}
-
-.ring-b {
-  width: 360px;
-  height: 360px;
-  left: 120px;
-  top: 190px;
+  background: #10161d;
 }
 
 .topbar {
-  position: relative;
-  z-index: 3;
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
   width: min(1240px, 94vw);
-  margin: 12px auto 0;
   padding: 14px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--text-on-hero);
-  background: rgba(20, 28, 38, 0.92);
-  border: 1px solid rgba(170, 194, 223, 0.2);
+  background: rgba(20, 28, 38, 0.86);
+  border: 1px solid var(--line);
   border-radius: 14px;
   backdrop-filter: blur(6px);
 }
 
 .brand {
-  color: var(--text-on-hero);
+  color: #eef4ff;
   text-decoration: none;
   font-family: "Sora", sans-serif;
-  font-size: 2rem;
+  font-size: 1.55rem;
   font-weight: 800;
   display: inline-flex;
   align-items: center;
@@ -104,12 +59,11 @@ body {
   border-radius: 9px;
   display: inline-grid;
   place-items: center;
-  font-size: 1rem;
+  font-size: 0.84rem;
   font-weight: 800;
   color: #eaffff;
   background: linear-gradient(145deg, #28a9cf, #5d69c9);
   border: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 0 16px rgba(24, 217, 255, 0.45);
 }
 
 nav {
@@ -120,13 +74,12 @@ nav {
 nav a {
   color: #d5e2f3;
   text-decoration: none;
-  font-size: 0.96rem;
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
 nav a:hover {
-  color: #ffffff;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.45);
+  color: #fff;
 }
 
 .badge {
@@ -135,68 +88,61 @@ nav a:hover {
   color: #dce9fa;
   background: rgba(104, 130, 165, 0.2);
   padding: 7px 12px;
-  font-size: 0.73rem;
+  font-size: 0.72rem;
   letter-spacing: 0.8px;
 }
 
 main {
   position: relative;
+}
+
+.landing {
+  min-height: 100vh;
+  padding: 120px 44px 50px;
+  display: grid;
+  align-items: center;
+  background: linear-gradient(100deg, rgba(2, 7, 14, 0.86), rgba(4, 12, 23, 0.45)),
+    url("./assets/start-hero.jpg") center/cover no-repeat;
+  position: relative;
+}
+
+.landing-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 60% 40%, rgba(89, 196, 255, 0.25), transparent 42%);
+  pointer-events: none;
+}
+
+.landing-copy {
+  position: relative;
+  max-width: 660px;
   z-index: 1;
 }
 
-.hero {
-  position: relative;
-  background: linear-gradient(130deg, var(--bg), var(--bg-deep));
-  min-height: 80vh;
-  padding-bottom: 30px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  align-items: center;
-}
-
-.hero-copy-col {
-  width: min(560px, 88vw);
-  margin: 0 auto;
-  justify-self: center;
-  color: var(--text-on-hero);
-}
-
-.kicker {
-  margin: 0 0 10px;
-  display: inline-block;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 6px 12px;
-  font-size: 0.75rem;
-  color: #dce9ff;
-}
-
-h1 {
-  margin: 0 0 14px;
+.landing-copy h1 {
+  margin: 0 0 18px;
   font-family: "Sora", sans-serif;
-  font-size: clamp(2.1rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 6vw, 5.2rem);
   line-height: 1.05;
-  color: #ffffff;
+  color: #f8fbff;
 }
 
-.hero-copy {
-  margin: 0 0 20px;
-  color: var(--muted-on-hero);
-  line-height: 1.6;
+.landing-copy p {
+  margin: 0 0 24px;
+  color: #cedceb;
+  font-size: clamp(1rem, 1.7vw, 1.15rem);
 }
 
 .hero-actions {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .btn {
   text-decoration: none;
-  border-radius: 999px;
+  border-radius: 12px;
   padding: 12px 24px;
   font-weight: 700;
   display: inline-flex;
@@ -212,27 +158,60 @@ h1 {
 .btn.ghost {
   border: 1px solid rgba(175, 199, 226, 0.42);
   color: #e1ebf8;
-  background: rgba(41, 57, 77, 0.28);
+  background: rgba(41, 57, 77, 0.35);
 }
 
-.telemetry {
+.landing-meta {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 10px;
+  color: #bfcee1;
 }
 
-.telemetry span {
-  font-size: 0.72rem;
+.landing-meta span {
+  position: relative;
+}
+
+.landing-meta span + span::before {
+  content: "•";
+  margin-right: 10px;
+}
+
+.hero {
+  padding: 36px 0 16px;
+}
+
+.hero-copy-col {
+  width: min(700px, 92vw);
+  margin: 0 auto 18px;
+}
+
+.kicker {
+  margin: 0 0 10px;
+  display: inline-block;
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 5px 10px;
-  color: #e4efff;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  color: #dce9ff;
+}
+
+.hero h1 {
+  margin: 0 0 14px;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  line-height: 1.08;
+}
+
+.hero-copy {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .hero-stats {
-  grid-column: 1 / -1;
   width: min(1160px, 92vw);
-  margin: 10px auto 0;
+  margin: 0 auto;
   display: grid;
   gap: 12px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -375,12 +354,6 @@ footer {
   transform: translateY(0);
 }
 
-@media (max-width: 1080px) {
-  .hero {
-    padding-top: 20px;
-  }
-}
-
 @media (max-width: 760px) {
   .topbar {
     flex-wrap: wrap;
@@ -393,7 +366,11 @@ footer {
   }
 
   .brand {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+  }
+
+  .landing {
+    padding: 120px 20px 40px;
   }
 
   .hero-stats {

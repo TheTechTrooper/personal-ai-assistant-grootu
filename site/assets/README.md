@@ -1,7 +1,7 @@
-Place your hero image here with this exact name:
+Place your landing image here with this exact name:
 
-- `hero-profile.jpg`
+- `start-hero.jpg`
 
 Recommended:
-- portrait ratio around `4:5`
-- at least `900x1100`
+- landscape ratio around `16:9`
+- at least `1920x1080`

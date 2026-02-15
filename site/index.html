@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grootu.ai | AI Systems</title>
-    <meta
-      name="description"
-      content="Portfolio and work dashboard for projects, skills, and current focus."
-    />
+    <meta name="description" content="Grootu.ai landing page and services." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,26 +14,41 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="hero-bg-shape shape-a"></div>
-    <div class="hero-bg-shape shape-b"></div>
-    <div class="hero-bg-ring ring-a"></div>
-    <div class="hero-bg-ring ring-b"></div>
-
     <header class="topbar">
-      <a class="brand" href="#home"><span class="brand-icon">⌁</span>Grootu.ai</a>
+      <a class="brand" href="#start"><span class="brand-icon">&lt;&gt;</span>Grootu.ai</a>
       <nav>
         <a href="#home">Home</a>
         <a href="#stack">About</a>
-        <a href="#projects">Services</a>
-        <a href="#stack">Stack</a>
+        <a href="#services">Services</a>
         <a href="#timeline">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
       <div class="badge">ONLINE</div>
     </header>
 
-    <main id="home">
-      <section class="hero reveal">
+    <main>
+      <section id="start" class="landing reveal">
+        <div class="landing-overlay"></div>
+        <div class="landing-copy">
+          <h1>
+            Build Smarter.<br />
+            Automate Faster.<br />
+            Think Ahead.
+          </h1>
+          <p>Your intelligent AI companion built for the future.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#home">Get Started</a>
+            <a class="btn ghost" href="#services">Explore Features</a>
+          </div>
+          <div class="landing-meta">
+            <span>&#9889; Built for Developers</span>
+            <span>Startups</span>
+            <span>Enterprises</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="home" class="hero reveal">
         <div class="hero-copy-col">
           <p class="kicker">Next-Gen AI</p>
           <h1>Artificial Intelligence For Your Business</h1>
@@ -44,15 +56,6 @@
             I build practical AI assistants, automation workflows, and local-first systems
             that help teams ship faster and work smarter.
           </p>
-          <div class="hero-actions">
-            <a class="btn primary" href="#projects">Read More</a>
-            <a class="btn ghost" href="#contact">Contact Us</a>
-          </div>
-          <div class="telemetry">
-            <span>VOICE AGENT</span>
-            <span>AUTOMATION</span>
-            <span>LOCAL LLM</span>
-          </div>
         </div>
         <div class="hero-stats">
           <article>
@@ -70,10 +73,10 @@
         </div>
       </section>
 
-      <section id="projects" class="panel reveal">
+      <section id="services" class="panel reveal">
         <div class="section-head">
-          <h2>Featured Projects</h2>
-          <p>High-impact projects with measurable outcomes.</p>
+          <h2>Services</h2>
+          <p>High-impact solutions with measurable outcomes.</p>
         </div>
         <div id="project-list" class="project-grid"></div>
       </section>
@@ -96,17 +99,10 @@
 
       <section id="contact" class="panel contact reveal">
         <h2>Let us build something useful</h2>
-        <p>
-          Open to collaboration on AI automation, assistants, and productivity
-          systems.
-        </p>
+        <p>Open to collaboration on AI automation, assistants, and productivity systems.</p>
         <div class="contact-actions">
           <a class="btn primary" href="mailto:you@example.com">Email Me</a>
-          <a
-            class="btn ghost"
-            href="https://github.com/TheTechTrooper"
-            target="_blank"
-            rel="noreferrer"
+          <a class="btn ghost" href="https://github.com/TheTechTrooper" target="_blank" rel="noreferrer"
             >GitHub</a
           >
         </div>
@@ -114,10 +110,7 @@
     </main>
 
     <footer>
-      <p>
-        <span id="year"></span> Sainath. Built with intent and shipped through
-        GitHub Actions.
-      </p>
+      <p><span id="year"></span> Sainath. Built with intent and shipped through GitHub Actions.</p>
     </footer>
 
     <script src="./script.js"></script>
