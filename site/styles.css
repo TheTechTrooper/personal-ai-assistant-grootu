@@ -102,7 +102,7 @@ main {
   display: grid;
   align-items: center;
   background: linear-gradient(100deg, rgba(2, 7, 14, 0.86), rgba(4, 12, 23, 0.45)),
-    url("./assets/start-hero.jpg") center/cover no-repeat;
+    url("./assets/start-hero.png") center/cover no-repeat;
   position: relative;
 }
 
@@ -119,25 +119,15 @@ main {
   z-index: 1;
 }
 
-.landing-copy h1 {
-  margin: 0 0 18px;
-  font-family: "Sora", sans-serif;
-  font-size: clamp(2.5rem, 6vw, 5.2rem);
-  line-height: 1.05;
-  color: #f8fbff;
-}
-
-.landing-copy p {
-  margin: 0 0 24px;
-  color: #cedceb;
-  font-size: clamp(1rem, 1.7vw, 1.15rem);
-}
-
 .hero-actions {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   margin-bottom: 16px;
+}
+
+.landing-buttons {
+  margin-bottom: 0;
 }
 
 .btn {
@@ -159,22 +149,6 @@ main {
   border: 1px solid rgba(175, 199, 226, 0.42);
   color: #e1ebf8;
   background: rgba(41, 57, 77, 0.35);
-}
-
-.landing-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  color: #bfcee1;
-}
-
-.landing-meta span {
-  position: relative;
-}
-
-.landing-meta span + span::before {
-  content: "•";
-  margin-right: 10px;
 }
 
 .hero {

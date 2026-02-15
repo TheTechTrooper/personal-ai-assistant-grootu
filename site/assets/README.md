@@ -1,6 +1,6 @@
 Place your landing image here with this exact name:
 
-- `start-hero.jpg`
+- `start-hero.png` (current)
 
 Recommended:
 - landscape ratio around `16:9`
