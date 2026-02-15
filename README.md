@@ -4,16 +4,18 @@ Offline-first personal assistant with:
 - Local LLM via Ollama
 - Voice input/output
 - Short-term + long-term memory
+- Desktop control UI
 - Basic command execution
 
 ## V1 Stack
 - LLM: `ollama` (`llama3:8b`, `mistral:7b`, or `phi3`)
-- STT: Vosk (offline)
+- STT: Faster-Whisper (offline)
 - TTS: pyttsx3 (offline)
 - Memory:
   - Short-term: in-memory conversation window (last 20 turns)
   - Long-term: SQLite (`backend/assistant_memory.db`)
 - Backend: FastAPI + WebSocket
+- Desktop UI: Flet (`desktop_app/main.py`)
 
 ## Quick Start
 1. Install Ollama and pull a model:
@@ -42,8 +44,28 @@ set OLLAMA_MODEL=mistral:7b
 uvicorn app.main:app --reload
 ```
 
+5. Run desktop app:
+```powershell
+run_backend.bat
+run_ui.bat
+```
+
+Or run direct:
+```powershell
+cd desktop_app
+..\backend\.venv\Scripts\python.exe main.py
+```
+
 ## Implemented V1 Capabilities
 - Conversation loop with local Ollama
+- Wake-word voice flow:
+  - Say `hey jarvis` once to start a session
+  - Continue with follow-up commands without repeating wake word
+  - Say `stop` / `stop speaking` to stop and return to wake-word mode
+- Desktop voice-state cue panel:
+  - `Speak now` when listening
+  - `Thinking...` when processing
+  - reconnect status when backend is unavailable
 - Memory commands:
   - `my name is ...`
   - `what is my name`
@@ -74,8 +96,12 @@ uvicorn app.main:app --reload
 - Runtime memory management commands:
   - `show memory stats`
   - `cleanup memory`
+- Useful launchers:
+  - `run_backend.bat`
+  - `run_ui.bat`
+  - `backend/run_backend_stable.bat`
 
 ## Next Steps for V1.5
-- Replace pyttsx3 with Piper TTS streaming
-- Replace Vosk with Faster-Whisper loop
-- Add wake word activation
+- Improve tool/action execution for browser and app automation
+- Add richer agent actions and confirmations for external operations
+- Optional: replace pyttsx3 with streaming TTS
