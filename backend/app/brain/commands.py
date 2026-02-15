@@ -2,6 +2,8 @@ import subprocess
 from dataclasses import dataclass
 from datetime import datetime
 import re
+import shutil
+from urllib.parse import quote_plus
 
 from app.brain.memory import (
     add_note,
@@ -57,6 +59,55 @@ def _open_vscode() -> str:
         return "Opening VS Code."
     except Exception:
         return "I could not open VS Code. Please confirm the `code` command is available."
+
+
+COMMON_SITES = {
+    "google": "https://www.google.com",
+    "youtube": "https://www.youtube.com",
+    "github": "https://github.com",
+    "linkedin": "https://www.linkedin.com",
+    "gmail": "https://mail.google.com",
+    "chatgpt": "https://chatgpt.com",
+    "x": "https://x.com",
+    "twitter": "https://x.com",
+}
+
+
+def _openclaw_available() -> bool:
+    return shutil.which("openclaw") is not None
+
+
+def _normalize_url(value: str) -> str:
+    candidate = value.strip().lower().strip(" .")
+    if not candidate:
+        return ""
+    if candidate in COMMON_SITES:
+        return COMMON_SITES[candidate]
+    if not candidate.startswith(("http://", "https://")):
+        if "." in candidate:
+            return f"https://{candidate}"
+        return ""
+    return candidate
+
+
+def _open_in_openclaw(url: str) -> str:
+    if not _openclaw_available():
+        return "OpenClaw CLI is not installed. Install it first, then try again."
+    try:
+        subprocess.run(["openclaw", "browser", "open", url], check=True, timeout=30)
+        return f"Opening {url} in OpenClaw browser."
+    except subprocess.TimeoutExpired:
+        return "OpenClaw took too long to respond."
+    except Exception:
+        return "I could not open that page in OpenClaw."
+
+
+def _search_web_in_openclaw(query: str) -> str:
+    query = query.strip()
+    if not query:
+        return "Please tell me what to search for."
+    search_url = f"https://www.google.com/search?q={quote_plus(query)}"
+    return _open_in_openclaw(search_url)
 
 
 def handle_command(user_text: str) -> CommandResult:
@@ -129,6 +180,41 @@ def handle_command(user_text: str) -> CommandResult:
     if any(phrase in normalized for phrase in vscode_phrases):
         return CommandResult(True, _open_vscode())
 
+    if normalized.startswith("open website "):
+        target = text[len("open website ") :].strip()
+        url = _normalize_url(target)
+        if not url:
+            return CommandResult(True, "Please provide a valid website, for example: open website youtube.com")
+        return CommandResult(True, _open_in_openclaw(url))
+
+    if normalized.startswith("open site "):
+        target = text[len("open site ") :].strip()
+        url = _normalize_url(target)
+        if not url:
+            return CommandResult(True, "Please provide a valid website, for example: open site github.com")
+        return CommandResult(True, _open_in_openclaw(url))
+
+    if normalized.startswith("go to "):
+        target = text[len("go to ") :].strip()
+        url = _normalize_url(target)
+        if not url:
+            return CommandResult(True, "Please provide a valid website, for example: go to openai.com")
+        return CommandResult(True, _open_in_openclaw(url))
+
+    if normalized.startswith("open "):
+        target = text[len("open ") :].strip()
+        url = _normalize_url(target)
+        if url:
+            return CommandResult(True, _open_in_openclaw(url))
+
+    if normalized.startswith("search web for "):
+        query = text[len("search web for ") :].strip()
+        return CommandResult(True, _search_web_in_openclaw(query))
+
+    if normalized.startswith("search for "):
+        query = text[len("search for ") :].strip()
+        return CommandResult(True, _search_web_in_openclaw(query))
+
     if (
         "show today git commits" in normalized
         or "show todays git commits" in normalized
@@ -160,6 +246,8 @@ def handle_command(user_text: str) -> CommandResult:
         for token in [
             "open",
             "show",
+            "go to",
+            "search",
             "add task",
             "complete task",
             "remember this",
@@ -171,7 +259,10 @@ def handle_command(user_text: str) -> CommandResult:
     if command_like:
         return CommandResult(
             True,
-            "I could not match that command. Try: open vscode, add task ..., show pending tasks, or remember this: ...",
+            (
+                "I could not match that command. Try: open vscode, open website github.com, "
+                "search web for latest AI news, add task ..., show pending tasks, or remember this: ..."
+            ),
         )
 
     return CommandResult(False)
