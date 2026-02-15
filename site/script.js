@@ -40,6 +40,13 @@ const portfolio = {
     { date: "2026-02", text: "Added desktop 'Speak now' and processing visual states." },
     { date: "2026-02", text: "Set up docs and backup workflow across GitHub." },
   ],
+  statusFeed: [
+    "Deploy pipeline active",
+    "Offline AI assistant in production",
+    "Voice UX latency tuning in progress",
+    "Automation roadmap execution",
+    "GitHub Pages synced to main",
+  ],
 };
 
 function renderProjects() {
@@ -89,8 +96,81 @@ function renderFooterYear() {
   document.getElementById("year").textContent = String(new Date().getFullYear());
 }
 
+function renderMarquee() {
+  const root = document.getElementById("marquee-track");
+  const items = [...portfolio.statusFeed, ...portfolio.statusFeed];
+  root.innerHTML = items.map((text) => `<span>${text}</span>`).join("");
+}
+
+function setupReveal() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+}
+
+function setupStarfield() {
+  const canvas = document.getElementById("starfield");
+  if (!canvas) {
+    return;
+  }
+  const ctx = canvas.getContext("2d");
+  const stars = [];
+  const starCount = 140;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function initStars() {
+    stars.length = 0;
+    for (let i = 0; i < starCount; i += 1) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        z: Math.random() * 1.2 + 0.2,
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach((star) => {
+      star.y += 0.18 * star.z;
+      if (star.y > canvas.height) {
+        star.y = -4;
+        star.x = Math.random() * canvas.width;
+      }
+      const size = 1.2 * star.z;
+      ctx.fillStyle = "rgba(157, 220, 255, 0.8)";
+      ctx.fillRect(star.x, star.y, size, size);
+    });
+    window.requestAnimationFrame(draw);
+  }
+
+  resize();
+  initStars();
+  window.addEventListener("resize", () => {
+    resize();
+    initStars();
+  });
+  draw();
+}
+
 renderProjects();
 renderSkills();
 renderTimeline();
 renderStats();
 renderFooterYear();
+renderMarquee();
+setupReveal();
+setupStarfield();

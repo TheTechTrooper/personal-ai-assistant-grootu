@@ -17,22 +17,25 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <canvas id="starfield" aria-hidden="true"></canvas>
     <div class="bg-orb orb-a"></div>
     <div class="bg-orb orb-b"></div>
     <div class="grid-overlay"></div>
+    <div class="scanline"></div>
 
     <header class="topbar">
-      <a class="brand" href="#home">Sainath.dev</a>
+      <a class="brand" href="#home"><span class="dot"></span>Sainath.dev</a>
       <nav>
         <a href="#projects">Projects</a>
         <a href="#stack">Stack</a>
         <a href="#timeline">Timeline</a>
         <a href="#contact">Contact</a>
       </nav>
+      <div class="badge">SYSTEM ONLINE</div>
     </header>
 
     <main id="home">
-      <section class="hero">
+      <section class="hero reveal">
         <p class="kicker">Personal Work Hub</p>
         <h1>Building practical AI assistants and real-world tooling.</h1>
         <p class="hero-copy">
@@ -42,6 +45,11 @@
         <div class="hero-actions">
           <a class="btn primary" href="#projects">View Work</a>
           <a class="btn ghost" href="#contact">Work With Me</a>
+        </div>
+        <div class="telemetry">
+          <span>MODE: EXECUTION</span>
+          <span>MODEL: LOCAL + OFFLINE</span>
+          <span>STATE: SHIPPING</span>
         </div>
         <div class="hero-stats">
           <article>
@@ -59,7 +67,7 @@
         </div>
       </section>
 
-      <section id="projects" class="panel">
+      <section id="projects" class="panel reveal">
         <div class="section-head">
           <h2>Featured Projects</h2>
           <p>High-impact projects with measurable outcomes.</p>
@@ -67,7 +75,7 @@
         <div id="project-list" class="project-grid"></div>
       </section>
 
-      <section id="stack" class="panel">
+      <section id="stack" class="panel reveal">
         <div class="section-head">
           <h2>Tech Stack</h2>
           <p>Tools and platforms I use most.</p>
@@ -75,7 +83,7 @@
         <div id="skill-list" class="chip-wrap"></div>
       </section>
 
-      <section id="timeline" class="panel">
+      <section id="timeline" class="panel reveal">
         <div class="section-head">
           <h2>Timeline</h2>
           <p>Recent milestones and what I am shipping next.</p>
@@ -83,7 +91,7 @@
         <div id="timeline-list" class="timeline"></div>
       </section>
 
-      <section id="contact" class="panel contact">
+      <section id="contact" class="panel contact reveal">
         <h2>Let us build something useful</h2>
         <p>
           Open to collaboration on AI automation, assistants, and productivity
@@ -101,6 +109,10 @@
         </div>
       </section>
     </main>
+
+    <section class="marquee" aria-label="status feed">
+      <div class="marquee-track" id="marquee-track"></div>
+    </section>
 
     <footer>
       <p>
