@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sainath | Work Dashboard</title>
+    <meta
+      name="description"
+      content="Portfolio and work dashboard for projects, skills, and current focus."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="grid-overlay"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#home">Sainath.dev</a>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#stack">Stack</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <p class="kicker">Personal Work Hub</p>
+        <h1>Building practical AI assistants and real-world tooling.</h1>
+        <p class="hero-copy">
+          This page tracks what I build, what I am focused on now, and how I
+          ship products from prototype to production.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">View Work</a>
+          <a class="btn ghost" href="#contact">Work With Me</a>
+        </div>
+        <div class="hero-stats">
+          <article>
+            <span id="stat-projects">0</span>
+            <p>Projects</p>
+          </article>
+          <article>
+            <span id="stat-years">0</span>
+            <p>Years Building</p>
+          </article>
+          <article>
+            <span id="stat-focus">0</span>
+            <p>Current Focus Areas</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="panel">
+        <div class="section-head">
+          <h2>Featured Projects</h2>
+          <p>High-impact projects with measurable outcomes.</p>
+        </div>
+        <div id="project-list" class="project-grid"></div>
+      </section>
+
+      <section id="stack" class="panel">
+        <div class="section-head">
+          <h2>Tech Stack</h2>
+          <p>Tools and platforms I use most.</p>
+        </div>
+        <div id="skill-list" class="chip-wrap"></div>
+      </section>
+
+      <section id="timeline" class="panel">
+        <div class="section-head">
+          <h2>Timeline</h2>
+          <p>Recent milestones and what I am shipping next.</p>
+        </div>
+        <div id="timeline-list" class="timeline"></div>
+      </section>
+
+      <section id="contact" class="panel contact">
+        <h2>Let us build something useful</h2>
+        <p>
+          Open to collaboration on AI automation, assistants, and productivity
+          systems.
+        </p>
+        <div class="contact-actions">
+          <a class="btn primary" href="mailto:you@example.com">Email Me</a>
+          <a
+            class="btn ghost"
+            href="https://github.com/TheTechTrooper"
+            target="_blank"
+            rel="noreferrer"
+            >GitHub</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        <span id="year"></span> Sainath. Built with intent and shipped through
+        GitHub Actions.
+      </p>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
