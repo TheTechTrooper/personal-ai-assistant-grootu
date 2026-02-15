@@ -3,12 +3,19 @@ fastapi
 uvicorn
 starlette
 
-# Voice
-SpeechRecognition==3.14.5
+# Voice (offline)
+sounddevice
+numpy
+faster-whisper
 pyttsx3==2.99
 pywin32==311
 pypiwin32==223
 
-# Typing / utils
-typing_extensions==4.15.0
-typing-inspection==0.4.2
+# LLM client
+requests
+
+# API
+websockets==13.1
+
+# UI
+flet

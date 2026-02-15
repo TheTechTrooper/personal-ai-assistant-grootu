@@ -1,54 +1,81 @@
-# 🤖 Personal AI Assistant
+# Personal Jarvis (Local V1)
 
-A voice-based personal AI assistant designed to work across **Windows** and **iOS**, customized to the user's preferences.  
-This project is being built incrementally with clear daily milestones.
+Offline-first personal assistant with:
+- Local LLM via Ollama
+- Voice input/output
+- Short-term + long-term memory
+- Basic command execution
 
----
+## V1 Stack
+- LLM: `ollama` (`llama3:8b`, `mistral:7b`, or `phi3`)
+- STT: Vosk (offline)
+- TTS: pyttsx3 (offline)
+- Memory:
+  - Short-term: in-memory conversation window (last 20 turns)
+  - Long-term: SQLite (`backend/assistant_memory.db`)
+- Backend: FastAPI + WebSocket
 
-## ✨ Features (Planned & In Progress)
+## Quick Start
+1. Install Ollama and pull a model:
+```powershell
+ollama pull mistral:7b
+ollama run mistral:7b
+```
 
-### ✅ Implemented (Day 1)
-- 🎙️ Voice-based interaction (Speech to Text & Text to Speech)
-- 🔊 AI voice output
-- 🎧 Microphone input handling (Windows-safe)
-- ⚙️ FastAPI backend running locally
-- 🧪 End-to-end voice loop (speak → listen → respond)
-
-### 🚧 Planned
-- 🧠 Memory system (remembers preferences, notes, tasks)
-- 💻 Coding assistant (Python, FastAPI, MongoDB)
-- 💰 Personal finance assistant
-- 🏋️ Workout & diet assistant
-- 🌐 Internet search capability
-- 📱 iOS mobile application
-- 🖥️ Windows desktop application
-
----
-
-## 📁 Project Structure
-
-
-
-
----
-
-## ⚙️ Tech Stack
-
-- **Language:** Python 3.10
-- **Backend:** FastAPI, Uvicorn
-- **Voice (STT):** SpeechRecognition + sounddevice
-- **Voice (TTS):** pyttsx3
-- **OS:** Windows (Day 1)
-- **IDE:** Visual Studio Code
-
----
-
-## ▶️ How to Run (Backend)
-
-### 1️⃣ Create & activate virtual environment
+2. Create environment and install dependencies:
 ```powershell
 cd backend
 python -m venv .venv
 .venv\Scripts\activate
+pip install -r requirements.txt
+```
 
+3. Run CLI mode (Phase 2):
+```powershell
+set OLLAMA_MODEL=mistral:7b
+python -m app.cli
+```
 
+4. Run backend voice mode:
+```powershell
+set OLLAMA_MODEL=mistral:7b
+uvicorn app.main:app --reload
+```
+
+## Implemented V1 Capabilities
+- Conversation loop with local Ollama
+- Memory commands:
+  - `my name is ...`
+  - `what is my name`
+  - `remember this: ...`
+  - `what do you know about ...`
+- Task commands:
+  - `add task ...`
+  - `show pending tasks`
+  - `complete task <id>`
+- System commands:
+  - `open vscode`
+  - `show today git commits`
+
+## Notes
+- Configure model with env var:
+  - `OLLAMA_MODEL` (default: `mistral:7b`)
+- Configure STT with env vars:
+  - `STT_MODEL_SIZE` (default: `small.en`; options: `base.en`, `small.en`, `medium.en`)
+  - `STT_DEVICE` (default: `cpu`)
+  - `STT_COMPUTE_TYPE` (default: `int8`)
+  - `STT_ENERGY_THRESHOLD` (default: `0.012`)
+- Memory DB path can be overridden:
+  - `ASSISTANT_MEMORY_DB`
+- Memory growth controls:
+  - `ASSISTANT_MAX_NOTES` (default: `5000`)
+  - `ASSISTANT_MAX_TASKS` (default: `10000`)
+  - `ASSISTANT_DONE_TASK_RETENTION_DAYS` (default: `90`)
+- Runtime memory management commands:
+  - `show memory stats`
+  - `cleanup memory`
+
+## Next Steps for V1.5
+- Replace pyttsx3 with Piper TTS streaming
+- Replace Vosk with Faster-Whisper loop
+- Add wake word activation

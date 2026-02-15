@@ -9,3 +9,9 @@ backend/.env
 # OS
 .DS_Store
 Thumbs.db
+
+# Runtime artifacts
+*.log
+backend/*.db
+backend/user_memory.json
+backend/models/
