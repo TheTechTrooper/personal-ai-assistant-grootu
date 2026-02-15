@@ -75,12 +75,16 @@ body {
   position: relative;
   z-index: 3;
   width: min(1240px, 94vw);
-  margin: 0 auto;
-  padding: 22px 0;
+  margin: 12px auto 0;
+  padding: 14px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--text-on-hero);
+  background: rgba(18, 69, 141, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
 }
 
 .brand {
@@ -108,19 +112,22 @@ nav {
 }
 
 nav a {
-  color: #d4e4ff;
+  color: #eef5ff;
   text-decoration: none;
   font-size: 0.96rem;
+  font-weight: 600;
 }
 
 nav a:hover {
   color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.45);
 }
 
 .badge {
   border: 1px solid var(--line);
   border-radius: 999px;
-  color: #dff2ff;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
   padding: 7px 12px;
   font-size: 0.73rem;
   letter-spacing: 0.8px;
