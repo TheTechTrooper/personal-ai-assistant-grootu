@@ -80,9 +80,15 @@ function renderTimeline() {
 }
 
 function renderStats() {
-  document.getElementById("stat-projects").textContent = String(portfolio.projects.length);
-  document.getElementById("stat-years").textContent = String(portfolio.yearsBuilding);
-  document.getElementById("stat-focus").textContent = String(portfolio.focusAreas.length);
+  const projects = document.getElementById("stat-projects");
+  const years = document.getElementById("stat-years");
+  const focus = document.getElementById("stat-focus");
+  if (!projects || !years || !focus) {
+    return;
+  }
+  projects.textContent = String(portfolio.projects.length);
+  years.textContent = String(portfolio.yearsBuilding);
+  focus.textContent = String(portfolio.focusAreas.length);
 }
 
 function renderFooterYear() {
