@@ -55,51 +55,14 @@
           </div>
         </div>
         <div class="hero-visual">
-          <div class="avatar-shell">
-            <svg
-              class="robot-svg"
-              viewBox="0 0 360 460"
-              role="img"
-              aria-label="Futuristic robot face"
-            >
-              <defs>
-                <linearGradient id="headGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#f8fcff" />
-                  <stop offset="60%" stop-color="#d9e8fb" />
-                  <stop offset="100%" stop-color="#c5dbf7" />
-                </linearGradient>
-                <linearGradient id="neckGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#5bd2ff" stop-opacity="0.8" />
-                  <stop offset="100%" stop-color="#284e87" stop-opacity="0.95" />
-                </linearGradient>
-                <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#9df8ff" stop-opacity="0.9" />
-                  <stop offset="100%" stop-color="#66c9ff" stop-opacity="0.3" />
-                </linearGradient>
-                <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#8ef6ff" stop-opacity="1" />
-                  <stop offset="100%" stop-color="#8ef6ff" stop-opacity="0" />
-                </radialGradient>
-              </defs>
-
-              <rect x="88" y="38" width="184" height="242" rx="92" fill="url(#headGrad)" />
-              <path d="M124 278h112c38 0 69 31 69 69v66H55v-66c0-38 31-69 69-69z" fill="url(#neckGrad)" />
-              <path d="M125 80h110" stroke="url(#accentGrad)" stroke-width="6" stroke-linecap="round" />
-              <path d="M118 112h124" stroke="#e9f3ff" stroke-width="3" stroke-linecap="round" />
-              <path d="M150 192h60" stroke="#adc8ea" stroke-width="4" stroke-linecap="round" />
-              <path d="M156 215h48" stroke="#adc8ea" stroke-width="4" stroke-linecap="round" />
-
-              <circle cx="152" cy="150" r="24" fill="url(#eyeGlow)" />
-              <circle cx="208" cy="150" r="24" fill="url(#eyeGlow)" />
-              <circle cx="152" cy="150" r="14" fill="#eef6ff" stroke="#1f3554" stroke-width="2.2" />
-              <circle cx="208" cy="150" r="14" fill="#eef6ff" stroke="#1f3554" stroke-width="2.2" />
-              <circle cx="152" cy="150" r="4.5" fill="#0f1f35" />
-              <circle cx="208" cy="150" r="4.5" fill="#0f1f35" />
-              <circle cx="149" cy="147" r="1.6" fill="#ffffff" />
-              <circle cx="205" cy="147" r="1.6" fill="#ffffff" />
-
-              <path d="M146 174c10 7 58 7 68 0" stroke="#93b2da" stroke-width="3" stroke-linecap="round" />
-            </svg>
+          <div class="avatar-shell profile-shell">
+            <img
+              class="profile-image"
+              src="./assets/hero-profile.jpg"
+              alt="Futuristic profile portrait"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+            />
+            <div class="profile-fallback">Add image: site/assets/hero-profile.jpg</div>
           </div>
           <div class="hero-dots"></div>
         </div>
