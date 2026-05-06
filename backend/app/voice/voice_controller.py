@@ -2,7 +2,7 @@ import threading
 import time
 import re
 
-from app.brain.ai_engine import process_input
+from app.brain.ai_engine import process_input_detailed
 from app.voice.speech_to_text import listen, listen_for_seconds
 from app.voice.text_to_speech import is_speaking, speak, speak_async, stop_speaking
 
@@ -157,9 +157,12 @@ class VoiceAssistant:
             self.awake_until = time.time() + self.wake_window_seconds
 
             self._emit("status", "processing")
-            response = process_input(text)
-            self._emit("ai_response", response)
-            self._speak_with_interrupt(response)
+            turn = process_input_detailed(text)
+            self._emit("agent_route", {"route": turn.route})
+            if turn.tool_name:
+                self._emit("tool_call", {"name": turn.tool_name, "args": turn.tool_args or {}})
+            self._emit("ai_response", turn.response)
+            self._speak_with_interrupt(turn.response)
             time.sleep(0.2)
 
     def handle_text_input(self, text: str):
@@ -183,9 +186,12 @@ class VoiceAssistant:
                 return
 
             self._emit("status", "processing")
-            response = process_input(text)
-            self._emit("ai_response", response)
-            self._speak_with_interrupt(response)
+            turn = process_input_detailed(text)
+            self._emit("agent_route", {"route": turn.route})
+            if turn.tool_name:
+                self._emit("tool_call", {"name": turn.tool_name, "args": turn.tool_args or {}})
+            self._emit("ai_response", turn.response)
+            self._speak_with_interrupt(turn.response)
             self._emit("status", "listening")
 
         threading.Thread(target=_process, daemon=True).start()

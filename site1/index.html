@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Kids Learning Website</title>
+    <meta
+      name="description"
+      content="A lightweight educational website for kids with quiz, memory, math, word, and riddle games."
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Smart Kids Learning Website</p>
+          <h1>Learn by playing quick text games.</h1>
+          <p class="hero-text">
+            Fun learning challenges for math, words, memory, and thinking. Fast to load, easy to use,
+            and built for kids on mobile or desktop.
+          </p>
+          <div class="hero-badges">
+            <span>5 game types</span>
+            <span>Daily challenge</span>
+            <span>30 second mode</span>
+          </div>
+        </div>
+        <div class="score-card">
+          <h2>Your Progress</h2>
+          <div class="stats-grid">
+            <div>
+              <strong id="total-points">0</strong>
+              <span>Total Points</span>
+            </div>
+            <div>
+              <strong id="best-quiz">0</strong>
+              <span>Best Quiz</span>
+            </div>
+            <div>
+              <strong id="best-math">0</strong>
+              <span>Best Math</span>
+            </div>
+            <div>
+              <strong id="daily-score">0</strong>
+              <span>Daily Stars</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <nav class="main-nav">
+        <button class="nav-btn active" data-target="home">Home</button>
+        <button class="nav-btn" data-target="daily">Daily</button>
+        <button class="nav-btn" data-target="quiz">Quiz</button>
+        <button class="nav-btn" data-target="riddles">Riddles</button>
+        <button class="nav-btn" data-target="memory">Memory</button>
+        <button class="nav-btn" data-target="math">Math</button>
+        <button class="nav-btn" data-target="word">Word</button>
+      </nav>
+
+      <main>
+        <section id="home" class="view active">
+          <div class="panel intro-panel">
+            <h2>Pick a game and start learning</h2>
+            <p>
+              Choose a level, play a quick round, and collect points. Your best scores stay saved on
+              this device with localStorage.
+            </p>
+            <div class="feature-grid">
+              <article class="feature-card">
+                <h3>Quiz Game</h3>
+                <p>Multiple choice questions from GK, science, math, and English.</p>
+              </article>
+              <article class="feature-card">
+                <h3>Brain Teasers</h3>
+                <p>Type the answer, use hints, and learn the correct solution.</p>
+              </article>
+              <article class="feature-card">
+                <h3>Memory Game</h3>
+                <p>Look at five words, remember them, and type them back.</p>
+              </article>
+              <article class="feature-card">
+                <h3>Math Speed</h3>
+                <p>Solve random sums against a 30 second timer.</p>
+              </article>
+              <article class="feature-card">
+                <h3>Word Game</h3>
+                <p>Unscramble words, match opposites, and fill in the blanks.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="daily" class="view">
+          <div class="panel">
+            <div class="section-head">
+              <h2>Daily Challenge</h2>
+              <p>Five fixed challenges each day. Come back tomorrow for a new set.</p>
+            </div>
+            <div class="status-row">
+              <span id="daily-date-label"></span>
+              <span id="daily-progress-label">0 / 5 solved</span>
+            </div>
+            <div class="progress-track">
+              <div id="daily-progress-bar" class="progress-fill"></div>
+            </div>
+            <div id="daily-card" class="game-card"></div>
+          </div>
+        </section>
+
+        <section id="quiz" class="view">
+          <div class="panel">
+            <div class="section-head">
+              <h2>Quiz Game</h2>
+              <p>Answer one question at a time and build your score.</p>
+            </div>
+            <div class="toolbar">
+              <label>
+                Level
+                <select id="quiz-level"></select>
+              </label>
+              <label>
+                Topic
+                <select id="quiz-topic">
+                  <option value="all">All Topics</option>
+                  <option value="General Knowledge">General Knowledge</option>
+                  <option value="Science">Science</option>
+                  <option value="Math">Math</option>
+                  <option value="English">English</option>
+                </select>
+              </label>
+              <button id="quiz-start" class="action-btn">Start Quiz</button>
+            </div>
+            <div class="status-row">
+              <span id="quiz-score-label">Score: 0</span>
+              <span id="quiz-step-label">Question 0 / 5</span>
+            </div>
+            <div class="progress-track">
+              <div id="quiz-progress-bar" class="progress-fill"></div>
+            </div>
+            <div id="quiz-card" class="game-card"></div>
+          </div>
+        </section>
+
+        <section id="riddles" class="view">
+          <div class="panel">
+            <div class="section-head">
+              <h2>Brain Teasers and Riddles</h2>
+              <p>Read carefully, type your answer, and use a hint if needed.</p>
+            </div>
+            <div class="toolbar">
+              <label>
+                Level
+                <select id="riddle-level"></select>
+              </label>
+              <button id="riddle-next" class="action-btn">New Riddle</button>
+            </div>
+            <div id="riddle-card" class="game-card"></div>
+          </div>
+        </section>
+
+        <section id="memory" class="view">
+          <div class="panel">
+            <div class="section-head">
+              <h2>Memory Game</h2>
+              <p>Look at five words for five seconds, then type the ones you remember.</p>
+            </div>
+            <div class="toolbar">
+              <label>
+                Level
+                <select id="memory-level"></select>
+              </label>
+              <button id="memory-start" class="action-btn">Start Memory Round</button>
+            </div>
+            <div class="status-row">
+              <span id="memory-timer-label">Ready to play</span>
+              <span id="memory-score-label">Score: 0</span>
+            </div>
+            <div id="memory-card" class="game-card"></div>
+          </div>
+        </section>
+
+        <section id="math" class="view">
+          <div class="panel">
+            <div class="section-head">
+              <h2>Math Speed Game</h2>
+              <p>Solve as many sums as you can in 30 seconds.</p>
+            </div>
+            <div class="toolbar">
+              <label>
+                Level
+                <select id="math-level"></select>
+              </label>
+              <button id="math-start" class="action-btn">Start 30s Challenge</button>
+            </div>
+            <div class="status-row">
+              <span id="math-timer-label">Time: 30s</span>
+              <span id="math-score-label">Score: 0</span>
+            </div>
+            <div class="progress-track">
+              <div id="math-progress-bar" class="progress-fill"></div>
+            </div>
+            <div id="math-card" class="game-card"></div>
+          </div>
+        </section>
+
+        <section id="word" class="view">
+          <div class="panel">
+            <div class="section-head">
+              <h2>Word Game</h2>
+              <p>Unscramble, match opposites, and fill in the missing letters.</p>
+            </div>
+            <div class="toolbar">
+              <label>
+                Level
+                <select id="word-level"></select>
+              </label>
+              <button id="word-next" class="action-btn">New Word Challenge</button>
+            </div>
+            <div id="word-card" class="game-card"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
